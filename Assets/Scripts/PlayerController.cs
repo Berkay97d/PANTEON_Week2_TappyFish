@@ -34,13 +34,13 @@ public class PlayerController : MonoBehaviour
     
     private void Update()
     {
+        Rotate();
         if (GameController.İsGameOver)
         {
             return;
         }
         
         Jump();
-        Rotate();
     }
 
     private void Jump()
