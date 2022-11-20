@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DefaultNamespace;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -68,17 +69,19 @@ public class UIController : MonoBehaviour
 
     public void RestartGame()
     {
+        
         beforeGame.gameObject.SetActive(true);
         endGame.gameObject.SetActive(false);
         score = 0;
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         GameController.İsGameOver = false;
-        var obs = FindObjectsOfType<Obstacle>();
+        /*var obs = FindObjectsOfType<Obstacle>();
 
         foreach (var VARIABLE in obs)
         {
             Destroy(VARIABLE.gameObject);
-        }
+        }*/
+        SceneManager.LoadScene(0);
     }
     
     

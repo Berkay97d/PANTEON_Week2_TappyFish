@@ -6,14 +6,29 @@ using UnityEngine;
 
 public class PlayerCollusions : MonoBehaviour
 {
+    private PlayerController playerController;
+    private bool isSoundPlayed = false;
+    
+    private void Start()
+    {
+        playerController = GetComponent<PlayerController>();
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Obstacle"))
         {
-            GameController.İsGameOver = true;
+            if (!isSoundPlayed)
+            {
+                playerController.PlayHitSound();
+                GameController.İsGameOver = true;
+            }
+
+            isSoundPlayed = true;
             return;
         }
-
+        
+        playerController.PlayPointSound();
         UIController.score++;
     }
 
@@ -21,6 +36,11 @@ public class PlayerCollusions : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Ground"))
         {
+            if (!isSoundPlayed)
+            {
+                playerController.PlayHitSound();
+                isSoundPlayed = true;
+            }
             GameController.İsGameOver = true;
         }
     }
